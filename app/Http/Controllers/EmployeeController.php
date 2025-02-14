@@ -2,37 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Services\EmployeeService;
 
 class EmployeeController extends Controller
 {
+
+    public function __construct(private EmployeeService $employeeService)
+    {
+        $this->employeeService = $employeeService;
+    }
+
     public function index()
     {
-        return 'Employee Index';
+        return $this->employeeService->index();
     }
 
     public function create()
     {
-        return 'Employee Create';
+        return $this->employeeService->create();
     }
 
     public function update()
     {
-        return 'Employee Update';
+        return $this->employeeService->update();
     }
 
     public function delete()
     {
-        return 'Employee Delete';
+        return $this->employeeService->delete();
     }
 
     public function getById()
     {
-        return 'Employee Get By Id';
+        return $this->employeeService->getById();
     }
 
     public function getAll()
     {
-        return 'Employee Get All';
+        return $this->employeeService->getAll();
     }
 }
