@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/index', [EmployeeController::class, 'index']);
+Route::post('/create', [EmployeeController::class, 'create']);
+Route::patch('/update', [EmployeeController::class, 'update']);
+Route::delete('/delete', [EmployeeController::class, 'delete']);
+Route::get('/getById', [EmployeeController::class, 'getById']);
+Route::get('/getAll', [EmployeeController::class, 'getAll']);
