@@ -30,9 +30,14 @@ class EmployeeController extends Controller
             'Employee Data' => new EmployeeResource($data)];
     }
 
-    public function delete()
+    public function delete(int $id)
     {
-        return $this->employeeService->delete();
+        $delete = $this->employeeService->delete($id);
+        if ($delete === true) {
+            return ['message' => 'Employee deleted successfully...!'];
+        } else {
+            return ['message' => 'Employee not found...!'];
+        }
     }
 
     public function getById()

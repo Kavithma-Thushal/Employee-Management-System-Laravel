@@ -26,4 +26,13 @@ class CrudRepository implements CrudRepositoryInterface
         }
         return $record;
     }
+
+    public function delete(int $id)
+    {
+        $record = $this->model->find($id);
+        if ($record) {
+            $record->delete();
+            return true;
+        }
+    }
 }
