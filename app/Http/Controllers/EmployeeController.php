@@ -12,11 +12,6 @@ class EmployeeController extends Controller
         $this->employeeService = $employeeService;
     }
 
-    public function index()
-    {
-        return $this->employeeService->index();
-    }
-
     public function create()
     {
         return $this->employeeService->create();

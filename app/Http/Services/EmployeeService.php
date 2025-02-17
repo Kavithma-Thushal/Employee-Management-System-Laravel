@@ -4,10 +4,6 @@ namespace App\Http\Services;
 
 class EmployeeService
 {
-    public function index()
-    {
-        return 'Employee Index';
-    }
 
     public function create()
     {

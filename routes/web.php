@@ -3,7 +3,6 @@
 use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/index', [EmployeeController::class, 'index']);
 Route::post('/create', [EmployeeController::class, 'create']);
 Route::patch('/update', [EmployeeController::class, 'update']);
 Route::delete('/delete', [EmployeeController::class, 'delete']);
