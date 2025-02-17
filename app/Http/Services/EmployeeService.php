@@ -2,12 +2,20 @@
 
 namespace App\Http\Services;
 
+use App\Repositories\Employee\EmployeeRepositoryInterface;
+
 class EmployeeService
 {
+    protected EmployeeRepositoryInterface $employeeRepositoryInterface;
 
-    public function create()
+    public function __construct(EmployeeRepositoryInterface $employeeRepositoryInterface)
     {
-        return 'Employee Create';
+        $this->employeeRepositoryInterface = $employeeRepositoryInterface;
+    }
+
+    public function create(array $data)
+    {
+        return $this->employeeRepositoryInterface->create($data);
     }
 
     public function update()

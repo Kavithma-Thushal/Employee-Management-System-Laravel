@@ -2,19 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmployeeRequest;
+use App\Http\Resources\EmployeeResource;
 use App\Http\Services\EmployeeService;
+use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
+    protected EmployeeService $employeeService;
 
-    public function __construct(private EmployeeService $employeeService)
+    public function __construct(EmployeeService $employeeService)
     {
         $this->employeeService = $employeeService;
     }
 
-    public function create()
+    public function create(EmployeeRequest $request)
     {
-        return $this->employeeService->create();
+        $data = $this->employeeService->create($request->all());
+        return ['message' => 'Employee saved successfully...!',
+            'Employee Data' => new EmployeeResource($data)];
     }
 
     public function update()

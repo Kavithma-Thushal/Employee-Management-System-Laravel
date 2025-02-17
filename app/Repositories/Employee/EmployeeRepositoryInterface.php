@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Repositories\Employee;
-interface EmployeeRepositoryInterface
+
+use App\Repositories\CrudRepositoryInterface;
+
+interface EmployeeRepositoryInterface extends CrudRepositoryInterface
 {
 }
