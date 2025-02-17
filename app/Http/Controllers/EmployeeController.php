@@ -19,14 +19,14 @@ class EmployeeController extends Controller
     {
         $data = $this->employeeService->create($request->validated());
         return ['message' => 'Employee saved successfully...!',
-            'Employee Data' => new EmployeeResource($data)];
+            'data' => new EmployeeResource($data)];
     }
 
     public function update(EmployeeRequest $request, int $id)
     {
         $data = $this->employeeService->update($request->validated(), $id);
         return ['message' => 'Employee updated successfully...!',
-            'Employee Data' => new EmployeeResource($data)];
+            'data' => new EmployeeResource($data)];
     }
 
     public function delete(int $id)
@@ -38,12 +38,12 @@ class EmployeeController extends Controller
     public function getById(int $id)
     {
         $data = $this->employeeService->getById($id);
-        return ['Employee Data' => new EmployeeResource($data)];
+        return ['data' => new EmployeeResource($data)];
     }
 
     public function getAll()
     {
         $data = $this->employeeService->getAll();
-        return ['Employee Data' => EmployeeResource::collection($data)];
+        return ['data' => EmployeeResource::collection($data)];
     }
 }
