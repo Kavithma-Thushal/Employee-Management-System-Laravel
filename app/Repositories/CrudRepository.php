@@ -21,9 +21,7 @@ class CrudRepository implements CrudRepositoryInterface
     public function update(array $data, int $id)
     {
         $record = $this->model->find($id);
-        if ($record) {
-            $record->update($data);
-        }
+        $record->update($data);
         return $record;
     }
 
