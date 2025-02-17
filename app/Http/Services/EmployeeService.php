@@ -28,9 +28,9 @@ class EmployeeService
         return $this->employeeRepositoryInterface->delete($id);
     }
 
-    public function getById()
+    public function getById(int $id)
     {
-        return 'Employee Get By Id';
+        return $this->employeeRepositoryInterface->getById($id);
     }
 
     public function getAll()

@@ -29,10 +29,11 @@ class CrudRepository implements CrudRepositoryInterface
 
     public function delete(int $id)
     {
-        $record = $this->model->find($id);
-        if ($record) {
-            $record->delete();
-            return true;
-        }
+        $this->model->find($id)->delete();
+    }
+
+    public function getById(int $id)
+    {
+        return $this->model->find($id);
     }
 }
