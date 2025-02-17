@@ -18,9 +18,9 @@ class EmployeeService
         return $this->employeeRepositoryInterface->create($data);
     }
 
-    public function update()
+    public function update(array $data, int $id)
     {
-        return 'Employee Update';
+        return $this->employeeRepositoryInterface->update($data, $id);
     }
 
     public function delete()

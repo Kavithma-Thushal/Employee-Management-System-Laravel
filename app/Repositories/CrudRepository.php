@@ -17,4 +17,13 @@ class CrudRepository implements CrudRepositoryInterface
     {
         return $this->model->create($data);
     }
+
+    public function update(array $data, int $id)
+    {
+        $record = $this->model->find($id);
+        if ($record) {
+            $record->update($data);
+        }
+        return $record;
+    }
 }

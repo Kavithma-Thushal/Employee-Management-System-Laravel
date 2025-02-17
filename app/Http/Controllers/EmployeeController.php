@@ -23,9 +23,11 @@ class EmployeeController extends Controller
             'Employee Data' => new EmployeeResource($data)];
     }
 
-    public function update()
+    public function update(EmployeeRequest $request, int $id)
     {
-        return $this->employeeService->update();
+        $data = $this->employeeService->update($request->all(), $id);
+        return ['message' => 'Employee updated successfully...!',
+            'Employee Data' => new EmployeeResource($data)];
     }
 
     public function delete()
