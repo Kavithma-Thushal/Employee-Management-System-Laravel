@@ -17,14 +17,14 @@ class EmployeeController extends Controller
 
     public function create(EmployeeRequest $request)
     {
-        $data = $this->employeeService->create($request->all());
+        $data = $this->employeeService->create($request->validated());
         return ['message' => 'Employee saved successfully...!',
             'Employee Data' => new EmployeeResource($data)];
     }
 
     public function update(EmployeeRequest $request, int $id)
     {
-        $data = $this->employeeService->update($request->all(), $id);
+        $data = $this->employeeService->update($request->validated(), $id);
         return ['message' => 'Employee updated successfully...!',
             'Employee Data' => new EmployeeResource($data)];
     }
