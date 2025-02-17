@@ -36,4 +36,9 @@ class CrudRepository implements CrudRepositoryInterface
     {
         return $this->model->find($id);
     }
+
+    public function getAll()
+    {
+        return $this->model->all();
+    }
 }

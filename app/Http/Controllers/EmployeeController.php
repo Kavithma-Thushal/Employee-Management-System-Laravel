@@ -44,6 +44,7 @@ class EmployeeController extends Controller
 
     public function getAll()
     {
-        return $this->employeeService->getAll();
+        $data = $this->employeeService->getAll();
+        return ['Employee Data' => EmployeeResource::collection($data)];
     }
 }

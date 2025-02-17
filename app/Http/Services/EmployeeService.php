@@ -35,6 +35,6 @@ class EmployeeService
 
     public function getAll()
     {
-        return 'Employee Get All';
+        return $this->employeeRepositoryInterface->getAll();
     }
 }
