@@ -18,21 +18,21 @@ class EmployeeController extends Controller
     public function create(EmployeeRequest $request)
     {
         $data = $this->employeeService->create($request->validated());
-        return ['message' => 'Employee saved successfully...!',
+        return ['message' => 'Employee saved successfully!',
             'data' => new EmployeeResource($data)];
     }
 
     public function update(EmployeeRequest $request, int $id)
     {
         $data = $this->employeeService->update($request->validated(), $id);
-        return ['message' => 'Employee updated successfully...!',
+        return ['message' => 'Employee updated successfully!',
             'data' => new EmployeeResource($data)];
     }
 
     public function delete(int $id)
     {
         $this->employeeService->delete($id);
-        return ['message' => 'Employee deleted successfully...!'];
+        return ['message' => 'Employee deleted successfully!'];
     }
 
     public function getById(int $id)
