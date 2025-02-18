@@ -32,6 +32,10 @@ class EmployeeService
     {
         DB::beginTransaction();
         try {
+            $employee = $this->employeeRepositoryInterface->find($id);
+            if (!$employee) {
+                throw new HttpException(404, 'Employee not found!');
+            }
             $data = $this->employeeRepositoryInterface->update($data, $id);
             DB::commit();
             return $data;

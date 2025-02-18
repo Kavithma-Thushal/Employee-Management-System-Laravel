@@ -6,6 +6,7 @@ use App\Http\Requests\EmployeeRequest;
 use App\Http\Resources\EmployeeResource;
 use App\Http\Services\EmployeeService;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class EmployeeController extends Controller
 {
@@ -34,7 +35,7 @@ class EmployeeController extends Controller
             return ['message' => 'Employee updated successfully!',
                 'data' => new EmployeeResource($data)];
         } catch (HttpException $e) {
-            return ['message' => $e->getMessage()];
+            throw new HttpResponseException(response()->json(["error" => $e->getMessage()], $e->getStatusCode()));
         }
     }
 
