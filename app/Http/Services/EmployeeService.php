@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Repositories\Employee\EmployeeRepositoryInterface;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class EmployeeService
@@ -16,46 +17,66 @@ class EmployeeService
 
     public function create(array $data)
     {
+        DB::beginTransaction();
         try {
-            return $this->employeeRepositoryInterface->create($data);
+            $data = $this->employeeRepositoryInterface->create($data);
+            DB::commit();
+            return $data;
         } catch (HttpException $e) {
-            return $e->getMessage();
+            DB::rollBack();
+            throw $e;
         }
     }
 
     public function update(array $data, int $id)
     {
+        DB::beginTransaction();
         try {
-            return $this->employeeRepositoryInterface->update($data, $id);
+            $data = $this->employeeRepositoryInterface->update($data, $id);
+            DB::commit();
+            return $data;
         } catch (HttpException $e) {
-            return $e->getMessage();
+            DB::rollBack();
+            throw $e;
         }
     }
 
     public function delete(int $id)
     {
+        DB::beginTransaction();
         try {
-            return $this->employeeRepositoryInterface->delete($id);
+            $data = $this->employeeRepositoryInterface->delete($id);
+            DB::commit();
+            return $data;
         } catch (HttpException $e) {
-            return $e->getMessage();
+            DB::rollBack();
+            throw $e;
         }
     }
 
     public function getById(int $id)
     {
+        DB::beginTransaction();
         try {
-            return $this->employeeRepositoryInterface->find($id);
+            $data = $this->employeeRepositoryInterface->find($id);
+            DB::commit();
+            return $data;
         } catch (HttpException $e) {
-            return $e->getMessage();
+            DB::rollBack();
+            throw $e;
         }
     }
 
     public function getAll()
     {
+        DB::beginTransaction();
         try {
-            return $this->employeeRepositoryInterface->findAll();
+            $data = $this->employeeRepositoryInterface->findAll();
+            DB::commit();
+            return $data;
         } catch (HttpException $e) {
-            return $e->getMessage();
+            DB::rollBack();
+            throw $e;
         }
     }
 }
