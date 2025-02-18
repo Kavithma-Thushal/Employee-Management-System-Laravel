@@ -30,12 +30,12 @@ class CrudRepository implements CrudRepositoryInterface
         $this->model->find($id)->delete();
     }
 
-    public function getById(int $id)
+    public function find(int $id)
     {
         return $this->model->find($id);
     }
 
-    public function getAll()
+    public function findAll()
     {
         return $this->model->all();
     }

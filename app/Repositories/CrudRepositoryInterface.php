@@ -9,7 +9,7 @@ interface CrudRepositoryInterface
 
     public function delete(int $id);
 
-    public function getById(int $id);
+    public function find(int $id);
 
-    public function getAll();
+    public function findAll();
 }

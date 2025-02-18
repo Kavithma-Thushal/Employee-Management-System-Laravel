@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Repositories\Employee\EmployeeRepositoryInterface;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class EmployeeService
 {
@@ -15,26 +16,46 @@ class EmployeeService
 
     public function create(array $data)
     {
-        return $this->employeeRepositoryInterface->create($data);
+        try {
+            return $this->employeeRepositoryInterface->create($data);
+        } catch (HttpException $e) {
+            return $e->getMessage();
+        }
     }
 
     public function update(array $data, int $id)
     {
-        return $this->employeeRepositoryInterface->update($data, $id);
+        try {
+            return $this->employeeRepositoryInterface->update($data, $id);
+        } catch (HttpException $e) {
+            return $e->getMessage();
+        }
     }
 
     public function delete(int $id)
     {
-        return $this->employeeRepositoryInterface->delete($id);
+        try {
+            return $this->employeeRepositoryInterface->delete($id);
+        } catch (HttpException $e) {
+            return $e->getMessage();
+        }
     }
 
     public function getById(int $id)
     {
-        return $this->employeeRepositoryInterface->getById($id);
+        try {
+            return $this->employeeRepositoryInterface->find($id);
+        } catch (HttpException $e) {
+            return $e->getMessage();
+        }
     }
 
     public function getAll()
     {
-        return $this->employeeRepositoryInterface->getAll();
+        try {
+            return $this->employeeRepositoryInterface->findAll();
+        } catch (HttpException $e) {
+            return $e->getMessage();
+        }
     }
 }
