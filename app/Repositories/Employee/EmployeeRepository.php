@@ -11,4 +11,9 @@ class EmployeeRepository extends CrudRepository implements EmployeeRepositoryInt
     {
         parent::__construct($model);
     }
+
+    public function findByAddress()
+    {
+        return $this->model->where('address', 'Matara')->get();
+    }
 }

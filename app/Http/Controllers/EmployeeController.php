@@ -68,4 +68,14 @@ class EmployeeController extends Controller
             return ['message' => $e->getMessage()];
         }
     }
+
+    public function getByAddress()
+    {
+        try {
+            $data = $this->employeeService->getByAddress();
+            return ['data' => EmployeeResource::collection($data)];
+        } catch (HttpException $e) {
+            return ['message' => $e->getMessage()];
+        }
+    }
 }

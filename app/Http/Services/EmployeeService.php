@@ -91,4 +91,17 @@ class EmployeeService
             throw $e;
         }
     }
+
+    public function getByAddress()
+    {
+        DB::beginTransaction();
+        try {
+            $data = $this->employeeRepositoryInterface->findByAddress();
+            DB::commit();
+            return $data;
+        } catch (HttpException $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
 }
