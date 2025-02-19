@@ -45,7 +45,7 @@ class EmployeeController extends Controller
             $this->employeeService->delete($id);
             return ['message' => 'Employee deleted successfully!'];
         } catch (HttpException $e) {
-            return ['message' => $e->getMessage()];
+            throw new HttpResponseException(response()->json(["error" => $e->getMessage()], $e->getStatusCode()));
         }
     }
 

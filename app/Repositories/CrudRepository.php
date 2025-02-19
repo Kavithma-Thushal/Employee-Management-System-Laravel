@@ -21,13 +21,18 @@ class CrudRepository implements CrudRepositoryInterface
     public function update(array $data, int $id)
     {
         $record = $this->model->find($id);
-        $record->update($data);
+        if ($record) {
+            $record->update($data);
+        }
         return $record;
     }
 
     public function delete(int $id)
     {
-        $this->model->find($id)->delete();
+        $record = $this->model->find($id);
+        if ($record) {
+            $record->delete();
+        }
     }
 
     public function find(int $id)
