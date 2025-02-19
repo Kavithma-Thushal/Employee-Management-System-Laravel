@@ -70,9 +70,8 @@ class EmployeeService
             if (!$employee) {
                 throw new HttpException(404, 'Employee not found!');
             }
-            $data = $this->employeeRepositoryInterface->find($id);
             DB::commit();
-            return $data;
+            return $employee;
         } catch (HttpException $e) {
             DB::rollBack();
             throw $e;
