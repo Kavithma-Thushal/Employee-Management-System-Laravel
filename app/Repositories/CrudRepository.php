@@ -21,7 +21,7 @@ class CrudRepository implements CrudRepositoryInterface
     public function update(array $data, int $id)
     {
         $record = $this->model->find($id);
-        if ($record) {
+        if ($record != null) {
             $record->update($data);
         }
         return $record;
@@ -30,17 +30,14 @@ class CrudRepository implements CrudRepositoryInterface
     public function delete(int $id)
     {
         $record = $this->model->find($id);
-        if ($record) {
+        if ($record != null) {
             $record->delete();
         }
     }
 
     public function find(int $id)
     {
-        $record = $this->model->find($id);
-        if ($record) {
-            return $record;
-        }
+        return $this->model->find($id);
     }
 
     public function findAll()
