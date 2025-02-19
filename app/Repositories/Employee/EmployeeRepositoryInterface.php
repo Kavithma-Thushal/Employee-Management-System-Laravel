@@ -6,5 +6,5 @@ use App\Repositories\CrudRepositoryInterface;
 
 interface EmployeeRepositoryInterface extends CrudRepositoryInterface
 {
-    public function findByAddress();
+    public function getByAddress(string $address);
 }

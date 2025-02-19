@@ -91,11 +91,11 @@ class EmployeeService
         }
     }
 
-    public function getByAddress()
+    public function getByAddress(string $address)
     {
         DB::beginTransaction();
         try {
-            $data = $this->employeeRepositoryInterface->findByAddress();
+            $data = $this->employeeRepositoryInterface->getByAddress($address);
             DB::commit();
             return $data;
         } catch (HttpException $e) {

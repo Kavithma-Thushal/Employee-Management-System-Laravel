@@ -69,10 +69,10 @@ class EmployeeController extends Controller
         }
     }
 
-    public function getByAddress()
+    public function getByAddress(string $address)
     {
         try {
-            $data = $this->employeeService->getByAddress();
+            $data = $this->employeeService->getByAddress($address);
             return ['data' => EmployeeResource::collection($data)];
         } catch (HttpException $e) {
             return ['message' => $e->getMessage()];

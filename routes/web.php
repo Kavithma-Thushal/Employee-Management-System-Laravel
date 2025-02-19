@@ -9,5 +9,5 @@ Route::prefix('employee')->group(function () {
     Route::delete('/delete/{id}', [EmployeeController::class, 'delete']);
     Route::get('/getById/{id}', [EmployeeController::class, 'getById']);
     Route::get('/getAll', [EmployeeController::class, 'getAll']);
-    Route::get('/getByAddress', [EmployeeController::class, 'getByAddress']);
+    Route::get('/getByAddress/{address}', [EmployeeController::class, 'getByAddress']);
 });
