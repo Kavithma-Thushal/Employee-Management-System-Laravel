@@ -37,7 +37,10 @@ class CrudRepository implements CrudRepositoryInterface
 
     public function find(int $id)
     {
-        return $this->model->find($id);
+        $record = $this->model->find($id);
+        if ($record) {
+            return $record;
+        }
     }
 
     public function findAll()

@@ -55,7 +55,7 @@ class EmployeeController extends Controller
             $data = $this->employeeService->getById($id);
             return ['data' => new EmployeeResource($data)];
         } catch (HttpException $e) {
-            return ['message' => $e->getMessage()];
+            throw new HttpResponseException(response()->json(["error" => $e->getMessage()], $e->getStatusCode()));
         }
     }
 
