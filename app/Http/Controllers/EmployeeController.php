@@ -26,7 +26,7 @@ class EmployeeController extends Controller
                 'message' => 'Employee saved successfully!',
                 'data' => new EmployeeResource($data)]);
         } catch (HttpException $e) {
-            return ['message' => $e->getMessage()];
+            throw new HttpResponseException(response()->json(["error" => $e->getMessage()], $e->getStatusCode()));
         }
     }
 
@@ -68,7 +68,7 @@ class EmployeeController extends Controller
             $data = $this->employeeService->getAll();
             return new SuccessResource(['data' => EmployeeResource::collection($data)]);
         } catch (HttpException $e) {
-            return ['message' => $e->getMessage()];
+            throw new HttpResponseException(response()->json(["error" => $e->getMessage()], $e->getStatusCode()));
         }
     }
 
@@ -78,7 +78,7 @@ class EmployeeController extends Controller
             $data = $this->employeeService->getByAddress($address);
             return new SuccessResource(['data' => EmployeeResource::collection($data)]);
         } catch (HttpException $e) {
-            return ['message' => $e->getMessage()];
+            throw new HttpResponseException(response()->json(["error" => $e->getMessage()], $e->getStatusCode()));
         }
     }
 }
