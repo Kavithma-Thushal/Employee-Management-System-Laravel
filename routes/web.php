@@ -10,4 +10,5 @@ Route::prefix('employee')->group(function () {
     Route::get('/getById/{id}', [EmployeeController::class, 'getById']);
     Route::get('/getAll', [EmployeeController::class, 'getAll']);
     Route::get('/getByAddress/{address}', [EmployeeController::class, 'getByAddress']);
+    Route::get('/test', [EmployeeController::class, 'test']);
 });

@@ -16,4 +16,10 @@ class EmployeeRepository extends CrudRepository implements EmployeeRepositoryInt
     {
         return $this->model->where('address', $address)->get();
     }
+
+    public function test()
+    {
+        $data = [1, 2, 3, 4, 5];
+        return $data;
+    }
 }

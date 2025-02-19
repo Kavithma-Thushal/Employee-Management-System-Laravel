@@ -82,4 +82,14 @@ class EmployeeController extends Controller
             ErrorResponse::throwException($e);
         }
     }
+
+    public function test()
+    {
+        try {
+            $data = $this->employeeService->test();
+            return new SuccessResource(['message' => 'Tested Successfully!', 'data' => $data]);
+        } catch (HttpException $e) {
+            ErrorResponse::throwException($e);
+        }
+    }
 }

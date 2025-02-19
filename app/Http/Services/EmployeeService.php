@@ -103,4 +103,17 @@ class EmployeeService
             throw $e;
         }
     }
+
+    public function test()
+    {
+        DB::beginTransaction();
+        try {
+            $data = $this->employeeRepositoryInterface->test();
+            DB::commit();
+            return $data;
+        } catch (HttpException $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
 }
