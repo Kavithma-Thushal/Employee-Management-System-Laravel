@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EmployeeRequest;
 use App\Http\Resources\EmployeeResource;
+use App\Http\Resources\SuccessResource;
 use App\Http\Services\EmployeeService;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -21,8 +22,9 @@ class EmployeeController extends Controller
     {
         try {
             $data = $this->employeeService->create($request->validated());
-            return ['message' => 'Employee saved successfully!',
-                'data' => new EmployeeResource($data)];
+            return new SuccessResource([
+                'message' => 'Employee saved successfully!',
+                'data' => new EmployeeResource($data)]);
         } catch (HttpException $e) {
             return ['message' => $e->getMessage()];
         }
@@ -32,8 +34,9 @@ class EmployeeController extends Controller
     {
         try {
             $data = $this->employeeService->update($request->validated(), $id);
-            return ['message' => 'Employee updated successfully!',
-                'data' => new EmployeeResource($data)];
+            return new SuccessResource([
+                'message' => 'Employee updated successfully!',
+                'data' => new EmployeeResource($data)]);
         } catch (HttpException $e) {
             throw new HttpResponseException(response()->json(["error" => $e->getMessage()], $e->getStatusCode()));
         }
@@ -43,7 +46,7 @@ class EmployeeController extends Controller
     {
         try {
             $this->employeeService->delete($id);
-            return ['message' => 'Employee deleted successfully!'];
+            return new SuccessResource(['message' => 'Employee deleted successfully!']);
         } catch (HttpException $e) {
             throw new HttpResponseException(response()->json(["error" => $e->getMessage()], $e->getStatusCode()));
         }
@@ -53,7 +56,7 @@ class EmployeeController extends Controller
     {
         try {
             $data = $this->employeeService->getById($id);
-            return ['data' => new EmployeeResource($data)];
+            return new SuccessResource(['data' => new EmployeeResource($data)]);
         } catch (HttpException $e) {
             throw new HttpResponseException(response()->json(["error" => $e->getMessage()], $e->getStatusCode()));
         }
@@ -63,7 +66,7 @@ class EmployeeController extends Controller
     {
         try {
             $data = $this->employeeService->getAll();
-            return ['data' => EmployeeResource::collection($data)];
+            return new SuccessResource(['data' => EmployeeResource::collection($data)]);
         } catch (HttpException $e) {
             return ['message' => $e->getMessage()];
         }
@@ -73,7 +76,7 @@ class EmployeeController extends Controller
     {
         try {
             $data = $this->employeeService->getByAddress($address);
-            return ['data' => EmployeeResource::collection($data)];
+            return new SuccessResource(['data' => EmployeeResource::collection($data)]);
         } catch (HttpException $e) {
             return ['message' => $e->getMessage()];
         }
