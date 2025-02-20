@@ -8,5 +8,7 @@ interface EmployeeRepositoryInterface extends CrudRepositoryInterface
 {
     public function getByAddress(string $address);
 
+    public function getByEmail(string $email);
+
     public function test();
 }

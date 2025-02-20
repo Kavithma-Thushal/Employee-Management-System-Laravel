@@ -17,6 +17,11 @@ class EmployeeRepository extends CrudRepository implements EmployeeRepositoryInt
         return $this->model->where('address', $address)->get();
     }
 
+    public function getByEmail(string $email)
+    {
+        return $this->model->where('email', $email)->get();
+    }
+
     public function test()
     {
         $data = [1, 2, 3, 4, 5];

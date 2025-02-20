@@ -83,6 +83,16 @@ class EmployeeController extends Controller
         }
     }
 
+    public function getByEmail(string $email)
+    {
+        try {
+            $data = $this->employeeService->getByEmail($email);
+            return new SuccessResource(['data' => EmployeeResource::collection($data)]);
+        } catch (HttpException $e) {
+            ErrorResponse::throwException($e);
+        }
+    }
+
     public function test()
     {
         try {

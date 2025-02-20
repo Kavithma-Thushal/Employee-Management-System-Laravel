@@ -104,6 +104,19 @@ class EmployeeService
         }
     }
 
+    public function getByEmail(string $email)
+    {
+        DB::beginTransaction();
+        try {
+            $data = $this->employeeRepositoryInterface->getByEmail($email);
+            DB::commit();
+            return $data;
+        } catch (HttpException $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
     public function test()
     {
         DB::beginTransaction();
