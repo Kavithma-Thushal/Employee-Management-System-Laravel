@@ -10,6 +10,7 @@ class EmployeeRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
+            'email' => 'required|email',
             'address' => 'required|string|max:500',
             'salary' => 'required|numeric|min:0',
         ];
