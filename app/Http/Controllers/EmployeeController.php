@@ -22,10 +22,10 @@ class EmployeeController extends Controller
     public function create(EmployeeRequest $request)
     {
         try {
-            $data = $this->employeeService->create($request->validated());
+            $employeeData = $this->employeeService->create($request->validated());
             return new SuccessResource([
                 'message' => 'Employee saved successfully!',
-                'data' => new EmployeeResource($data)]);
+                'data' => new EmployeeResource($employeeData)]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);
         }
@@ -34,10 +34,10 @@ class EmployeeController extends Controller
     public function update(EmployeeRequest $request, int $id)
     {
         try {
-            $data = $this->employeeService->update($request->validated(), $id);
+            $employeeData = $this->employeeService->update($request->validated(), $id);
             return new SuccessResource([
                 'message' => 'Employee updated successfully!',
-                'data' => new EmployeeResource($data)]);
+                'data' => new EmployeeResource($employeeData)]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);
         }
@@ -56,8 +56,8 @@ class EmployeeController extends Controller
     public function getById(int $id)
     {
         try {
-            $data = $this->employeeService->getById($id);
-            return new SuccessResource(['data' => new EmployeeResource($data)]);
+            $employeeData = $this->employeeService->getById($id);
+            return new SuccessResource(['data' => new EmployeeResource($employeeData)]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);
         }
@@ -66,8 +66,8 @@ class EmployeeController extends Controller
     public function getAll()
     {
         try {
-            $data = $this->employeeService->getAll();
-            return new SuccessResource(['data' => EmployeeResource::collection($data)]);
+            $employeeData = $this->employeeService->getAll();
+            return new SuccessResource(['data' => EmployeeResource::collection($employeeData)]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);
         }
@@ -76,8 +76,8 @@ class EmployeeController extends Controller
     public function getByAddress(string $address)
     {
         try {
-            $data = $this->employeeService->getByAddress($address);
-            return new SuccessResource(['data' => EmployeeResource::collection($data)]);
+            $employeeData = $this->employeeService->getByAddress($address);
+            return new SuccessResource(['data' => EmployeeResource::collection($employeeData)]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);
         }
@@ -86,8 +86,8 @@ class EmployeeController extends Controller
     public function getByEmail(string $email)
     {
         try {
-            $data = $this->employeeService->getByEmail($email);
-            return new SuccessResource(['data' => EmployeeResource::collection($data)]);
+            $employeeData = $this->employeeService->getByEmail($email);
+            return new SuccessResource(['data' => EmployeeResource::collection($employeeData)]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);
         }
@@ -96,8 +96,8 @@ class EmployeeController extends Controller
     public function test()
     {
         try {
-            $data = $this->employeeService->test();
-            return new SuccessResource(['message' => 'Tested Successfully!', 'data' => $data]);
+            $testData = $this->employeeService->test();
+            return new SuccessResource(['message' => 'Tested Successfully!', 'data' => $testData]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);
         }

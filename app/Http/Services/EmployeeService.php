@@ -19,9 +19,9 @@ class EmployeeService
     {
         DB::beginTransaction();
         try {
-            $data = $this->employeeRepositoryInterface->create($data);
+            $employeeData = $this->employeeRepositoryInterface->create($data);
             DB::commit();
-            return $data;
+            return $employeeData;
         } catch (HttpException $e) {
             DB::rollBack();
             throw $e;
@@ -32,13 +32,13 @@ class EmployeeService
     {
         DB::beginTransaction();
         try {
-            $employee = $this->employeeRepositoryInterface->find($id);
-            if (!$employee) {
+            $employeeExist = $this->employeeRepositoryInterface->find($id);
+            if (!$employeeExist) {
                 throw new HttpException(404, 'Employee not found!');
             }
-            $data = $this->employeeRepositoryInterface->update($data, $id);
+            $employeeData = $this->employeeRepositoryInterface->update($data, $id);
             DB::commit();
-            return $data;
+            return $employeeData;
         } catch (HttpException $e) {
             DB::rollBack();
             throw $e;
@@ -49,13 +49,13 @@ class EmployeeService
     {
         DB::beginTransaction();
         try {
-            $employee = $this->employeeRepositoryInterface->find($id);
-            if (!$employee) {
+            $employeeExist = $this->employeeRepositoryInterface->find($id);
+            if (!$employeeExist) {
                 throw new HttpException(404, 'Employee not found!');
             }
-            $data = $this->employeeRepositoryInterface->delete($id);
+            $employeeData = $this->employeeRepositoryInterface->delete($id);
             DB::commit();
-            return $data;
+            return $employeeData;
         } catch (HttpException $e) {
             DB::rollBack();
             throw $e;
@@ -82,9 +82,9 @@ class EmployeeService
     {
         DB::beginTransaction();
         try {
-            $data = $this->employeeRepositoryInterface->findAll();
+            $employeeData = $this->employeeRepositoryInterface->findAll();
             DB::commit();
-            return $data;
+            return $employeeData;
         } catch (HttpException $e) {
             DB::rollBack();
             throw $e;
@@ -95,9 +95,9 @@ class EmployeeService
     {
         DB::beginTransaction();
         try {
-            $data = $this->employeeRepositoryInterface->getByAddress($address);
+            $employeeData = $this->employeeRepositoryInterface->getByAddress($address);
             DB::commit();
-            return $data;
+            return $employeeData;
         } catch (HttpException $e) {
             DB::rollBack();
             throw $e;
@@ -108,9 +108,9 @@ class EmployeeService
     {
         DB::beginTransaction();
         try {
-            $data = $this->employeeRepositoryInterface->getByEmail($email);
+            $employeeData = $this->employeeRepositoryInterface->getByEmail($email);
             DB::commit();
-            return $data;
+            return $employeeData;
         } catch (HttpException $e) {
             DB::rollBack();
             throw $e;
@@ -121,9 +121,9 @@ class EmployeeService
     {
         DB::beginTransaction();
         try {
-            $data = $this->employeeRepositoryInterface->test();
+            $testData = $this->employeeRepositoryInterface->test();
             DB::commit();
-            return $data;
+            return $testData;
         } catch (HttpException $e) {
             DB::rollBack();
             throw $e;
