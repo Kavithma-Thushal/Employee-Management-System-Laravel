@@ -8,7 +8,6 @@ use App\Http\Resources\EmployeeResource;
 use App\Http\Resources\SuccessResource;
 use App\Http\Services\EmployeeService;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 class EmployeeController extends Controller
 {
