@@ -10,6 +10,7 @@ Route::prefix('v1')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
 
     Route::group(['middleware' => ['auth:api']], function () {
+
         Route::prefix('employee')->group(function () {
             Route::post('', [EmployeeController::class, 'create']);
             Route::patch('{id}', [EmployeeController::class, 'update']);
@@ -25,5 +26,6 @@ Route::prefix('v1')->group(function () {
             Route::post('', [StaffController::class, 'create']);
             Route::get('{id}', [StaffController::class, 'getById']);
         });
+
     });
 });
