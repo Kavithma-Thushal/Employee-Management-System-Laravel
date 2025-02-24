@@ -22,7 +22,7 @@ class AuthService
     {
         DB::beginTransaction();
         try {
-            $user = $this->userRepositoryInterface->create([
+            $this->userRepositoryInterface->create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
