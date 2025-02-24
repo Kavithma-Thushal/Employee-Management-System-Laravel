@@ -28,7 +28,7 @@ class AuthService
                 'password' => Hash::make($data['password']),
             ]);
             DB::commit();
-            return $user;
+//            return $user;
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
