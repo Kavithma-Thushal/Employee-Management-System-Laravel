@@ -14,7 +14,6 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->alias(['permissions' => PermissionMiddleware::class]);
         $middleware->redirectGuestsTo(function () {
             throw new HttpException(HttpStatus::UNAUTHORIZED, 'Unauthenticated');
         });
