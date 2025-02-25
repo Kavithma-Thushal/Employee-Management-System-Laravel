@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
@@ -25,6 +26,10 @@ Route::prefix('v1')->group(function () {
         Route::prefix('staff')->group(function () {
             Route::post('', [StaffController::class, 'create']);
             Route::get('{id}', [StaffController::class, 'getById']);
+        });
+
+        Route::prefix('user')->group(function () {
+            Route::patch('{id}', [UserController::class, 'update']);
         });
 
     });
