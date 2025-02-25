@@ -22,8 +22,9 @@ class AuthService
     {
         DB::beginTransaction();
         try {
-            $this->userRepositoryInterface->create($data);
+            $user = $this->userRepositoryInterface->create($data);
             DB::commit();
+            return $user;
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
@@ -33,24 +34,24 @@ class AuthService
     public function login(array $data)
     {
         // Check Email
-        $email = $this->userRepositoryInterface->findByEmail($data['email']);
-        if (!$email) {
-            throw new HttpException(HttpStatus::UNPROCESSABLE_CONTENT, 'Username or password invalid!');
+        $user = $this->userRepositoryInterface->findByEmail($data['email']);
+        if (!$user) {
+            throw new HttpException(HttpStatus::UNPROCESSABLE_CONTENT, 'Email invalid!');
         }
 
         // Check Password
-        $password = Hash::check($data['password'], $email->password);
+        $password = Hash::check($data['password'], $user->password);
         if (!$password) {
-            throw new HttpException(HttpStatus::UNPROCESSABLE_CONTENT, 'Username or password invalid!');
+            throw new HttpException(HttpStatus::UNPROCESSABLE_CONTENT, 'Password invalid!');
         }
 
         // Return Token
-        $token = $email->createToken('ems')->accessToken;
+        $token = $user->createToken('ems')->accessToken;
         if ($token == null) {
             throw new HttpException(HttpStatus::INTERNAL_SERVER_ERROR, 'Token generate failed!');
         }
 
-        return $token;
+        return ['user' => $user, 'token' => $token];
 
     }
 }
