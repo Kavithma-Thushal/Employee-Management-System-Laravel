@@ -33,18 +33,24 @@ class AuthService
     public function login(array $data)
     {
         // Check Email
-        $user = $this->userRepositoryInterface->findByEmail($data['email']);
-        if (!$user) throw new HttpException(HttpStatus::UNPROCESSABLE_CONTENT, 'Username or password invalid!');
+        $email = $this->userRepositoryInterface->findByEmail($data['email']);
+        if (!$email) {
+            throw new HttpException(HttpStatus::UNPROCESSABLE_CONTENT, 'Username or password invalid!');
+        }
 
         // Check Password
-        if (!Hash::check($data['password'], $user->password))
+        $password = Hash::check($data['password'], $email->password);
+        if (!$password) {
             throw new HttpException(HttpStatus::UNPROCESSABLE_CONTENT, 'Username or password invalid!');
+        }
 
-        // Create personal access token
-        $token = $user->createToken('ems')->accessToken;
-        if ($token == null)
-            throw new HttpException(HttpStatus::INTERNAL_SERVER_ERROR, 'User authentication failed!');
+        // Return Token
+        $token = $email->createToken('ems')->accessToken;
+        if ($token == null) {
+            throw new HttpException(HttpStatus::INTERNAL_SERVER_ERROR, 'Token generate failed!');
+        }
 
         return $token;
+
     }
 }
