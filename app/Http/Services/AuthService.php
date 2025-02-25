@@ -45,13 +45,13 @@ class AuthService
             throw new HttpException(HttpStatus::UNPROCESSABLE_CONTENT, 'Password invalid!');
         }
 
-        // Return Token
+        // Create Token
         $token = $user->createToken('ems')->accessToken;
         if ($token == null) {
             throw new HttpException(HttpStatus::INTERNAL_SERVER_ERROR, 'Token generate failed!');
         }
 
-        return ['user' => $user, 'token' => $token];
+        return ['user' => $user, 'access_token' => $token];
 
     }
 }
