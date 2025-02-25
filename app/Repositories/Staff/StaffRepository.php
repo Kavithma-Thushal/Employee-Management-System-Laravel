@@ -11,9 +11,4 @@ class StaffRepository extends CrudRepository implements StaffRepositoryInterface
     {
         parent::__construct($model);
     }
-
-    public function create(array $data)
-    {
-        return $this->model->create($data);
-    }
 }
