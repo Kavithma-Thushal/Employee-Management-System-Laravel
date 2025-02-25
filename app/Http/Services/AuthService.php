@@ -22,11 +22,7 @@ class AuthService
     {
         DB::beginTransaction();
         try {
-            $this->userRepositoryInterface->create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-            ]);
+            $this->userRepositoryInterface->create($data);
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
