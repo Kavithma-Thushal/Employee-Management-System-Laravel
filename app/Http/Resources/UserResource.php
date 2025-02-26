@@ -12,6 +12,7 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'media_array' => $this->media ? new MediaResource($this->media) : null,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
